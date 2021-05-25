@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - main
-    tags:
-      - v.2
   pull_request:
 
 env:
   IMAGE_NAME: plantbook
+  IMAGE_TAG: v.2
 
 jobs:
   test:
@@ -55,9 +54,9 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
+          [ "$VERSION" == "$default-branch" ] && VERSION=$IMAGE_TAG
           echo IMAGE_ID=$IMAGE_ID
-                   
+          
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
