@@ -8,7 +8,6 @@ on:
 
 env:
   IMAGE_NAME: plantbook
-  IMAGE_TAG: v.2
 
 jobs:
   test:
@@ -54,7 +53,7 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          [ "$VERSION" == "$default-branch" ] && VERSION=$IMAGE_TAG
+          [ "$VERSION" == "$default-branch" ] && VERSION=v.101
           echo IMAGE_ID=$IMAGE_ID
           
           echo VERSION=$VERSION
