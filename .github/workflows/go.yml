@@ -77,3 +77,6 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+  defaults:
+    # Ensure test job passes before pushing image.
+    needs: push
