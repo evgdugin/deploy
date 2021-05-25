@@ -1,25 +1,17 @@
-name: Docker
+name: Plantbook
 
 on:
   push:
-    # Publish `main` as Docker `latest` image.
     branches:
       - main
-
-    # Publish `v1.2.3` tags as releases.
     tags:
-      - v*
-
-  # Run tests for any PRs.
+      - v1.2.3
   pull_request:
 
 env:
-  # TODO: Change variable to your image's name.
-  IMAGE_NAME: image
+  IMAGE_NAME: plantbook
 
 jobs:
-  # Run tests.
-  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
   test:
     runs-on: ubuntu-latest
 
